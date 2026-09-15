@@ -1,0 +1,106 @@
+:root {
+  --text: #5b5460;
+  --text-h: #08060d;
+  --bg: #fff;
+  --surface: #fdfbfd;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+
+  /* hot pink is the app's single accent — used for every "trim": borders,
+     links, active controls, focus rings. */
+  --pink: #ff2f92;
+  --pink-soft: #ff69b4;
+  --pink-bg: rgba(255, 105, 180, 0.12);
+  --pink-border: rgba(255, 47, 146, 0.55);
+
+  --danger: #d92662;
+  --danger-bg: rgba(217, 38, 98, 0.08);
+  --status-good: #0ca30c;
+  --status-good-bg: rgba(12, 163, 12, 0.1);
+
+  /* Validated categorical palette (fixed order — never reassigned per value)
+     for the per-language chart in the repo modal. See the dataviz skill's
+     palette reference: worst adjacent CVD ΔE 9.1 light / 8.4 dark. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #4a3aa7;
+  --series-8: #e34948;
+
+  --shadow:
+    rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/145% var(--sans);
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #b7b1bd;
+    --text-h: #f3f4f6;
+    --bg: #14121a;
+    --surface: #1b1822;
+    --border: #322e3b;
+    --code-bg: #1f1b28;
+
+    --pink: #ff5ba8;
+    --pink-soft: #ff8bc5;
+    --pink-bg: rgba(255, 91, 168, 0.16);
+    --pink-border: rgba(255, 91, 168, 0.6);
+
+    --danger: #ff6f9e;
+    --danger-bg: rgba(255, 111, 158, 0.12);
+    --status-good: #0ca30c;
+    --status-good-bg: rgba(12, 163, 12, 0.16);
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
+
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+button {
+  font-family: inherit;
+}
+
+code {
+  font-family: var(--mono);
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
