@@ -38,18 +38,20 @@ export function Controls({
         />
       </label>
 
-      <div className="sort-group" role="group" aria-label="Sort repositories by">
-        {SORT_CRITERIA.map((opt) => (
-          <button
-            key={opt.key}
-            type="button"
-            className={`sort-pill${criterion === opt.key ? ' active' : ''}`}
-            aria-pressed={criterion === opt.key}
-            onClick={() => onCriterionChange(opt.key)}
-          >
-            {opt.label}
-          </button>
-        ))}
+      <div className="sort-controls">
+        <div className="sort-group" role="group" aria-label="Sort repositories by">
+          {SORT_CRITERIA.map((opt) => (
+            <button
+              key={opt.key}
+              type="button"
+              className={`sort-pill${criterion === opt.key ? ' active' : ''}`}
+              aria-pressed={criterion === opt.key}
+              onClick={() => onCriterionChange(opt.key)}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
         <button
           type="button"
           className="sort-direction-toggle"

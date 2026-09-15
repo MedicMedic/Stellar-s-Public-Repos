@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { getCommitCount, getLanguages } from '../api/github'
+import { useShrinkToFit } from '../hooks/useShrinkToFit'
 import type { RepoWithCommits } from '../types'
 import { CloseIcon, ForkIcon, GithubIcon, IssueIcon, StarIcon, WatchIcon } from './Icons'
 
@@ -37,6 +38,7 @@ export function RepoModal({ repo, onClose }: RepoModalProps) {
   // Captured once at mount rather than read directly in render, which a
   // component body must keep pure (no Date.now() calls during render).
   const [openedAt] = useState(() => Date.now())
+  const titleRef = useShrinkToFit(repo.name)
   const modalRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -121,11 +123,8 @@ export function RepoModal({ repo, onClose }: RepoModalProps) {
         </button>
 
         <div className="modal-banner">
-          <span className="modal-avatar" aria-hidden="true">
-            {repo.name.charAt(0).toUpperCase()}
-          </span>
           <div className="modal-banner-text">
-            <h2 className="modal-title" id="repo-modal-title">
+            <h2 className="modal-title" id="repo-modal-title" ref={titleRef}>
               {repo.name}
             </h2>
             {repo.language && <span className="modal-language-chip">{repo.language}</span>}
