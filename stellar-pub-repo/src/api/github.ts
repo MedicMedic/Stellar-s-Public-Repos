@@ -76,14 +76,6 @@ export async function listAllRepos(signal?: AbortSignal): Promise<GithubRepo[]> 
   return repos
 }
 
-/** Searches the account's public repositories by name/description via GitHub's Search API. */
-export async function searchRepos(query: string, signal?: AbortSignal): Promise<GithubRepo[]> {
-  const q = encodeURIComponent(`user:${GITHUB_USER} ${query} in:name,description`)
-  const res = await githubFetch(`/search/repositories?q=${q}&per_page=100`, signal)
-  const data = (await res.json()) as { items: GithubRepo[] }
-  return data.items
-}
-
 /**
  * GitHub's REST API has no "total commits" field. This reads the page count
  * off the `Link` header of a 1-item commits request, which is the standard

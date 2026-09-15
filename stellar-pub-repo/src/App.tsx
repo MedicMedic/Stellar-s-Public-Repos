@@ -6,16 +6,19 @@ import { RepoGrid } from './components/RepoGrid'
 import { RepoModal } from './components/RepoModal'
 import { EmptyView, ErrorView, LoadingView } from './components/StatusView'
 import { useRepoExplorer } from './hooks/useRepoExplorer'
-import type { RepoWithCommits, SortCriterion, SortDirection } from './types'
+import type { GithubRepo, SortCriterion, SortDirection } from './types'
 
 function App() {
   const [query, setQuery] = useState('')
   const [criterion, setCriterion] = useState<SortCriterion>('stars')
   const [direction, setDirection] = useState<SortDirection>('desc')
-  const [selectedRepo, setSelectedRepo] = useState<RepoWithCommits | null>(null)
+  const [selectedRepo, setSelectedRepo] = useState<GithubRepo | null>(null)
 
-  const { status, repos, error, lastUpdated, isRefreshing, countingCommits, refresh } =
-    useRepoExplorer(query, criterion, direction)
+  const { status, repos, error, lastUpdated, isRefreshing, refresh } = useRepoExplorer(
+    query,
+    criterion,
+    direction,
+  )
 
   return (
     <>
@@ -35,11 +38,8 @@ function App() {
 
         {status === 'loading' && <LoadingView />}
         {status === 'error' && error && <ErrorView error={error} onRetry={refresh} />}
-        {status === 'success' && countingCommits && <LoadingView countingCommits />}
-        {status === 'success' && !countingCommits && repos.length === 0 && (
-          <EmptyView query={query.trim()} />
-        )}
-        {status === 'success' && !countingCommits && repos.length > 0 && (
+        {status === 'success' && repos.length === 0 && <EmptyView query={query.trim()} />}
+        {status === 'success' && repos.length > 0 && (
           <RepoGrid repos={repos} onOpen={setSelectedRepo} />
         )}
       </main>

@@ -1,13 +1,11 @@
 import type { ExplorerError } from '../types'
 import { EmptyIcon, WarningIcon } from './Icons'
 
-export function LoadingView({ countingCommits }: { countingCommits?: boolean }) {
+export function LoadingView() {
   return (
     <div className="status-view status-loading" role="status" aria-live="polite">
       <span className="spinner" aria-hidden="true" />
-      <p className="status-title">
-        {countingCommits ? 'Counting commits…' : 'Loading MedicMedic’s repositories…'}
-      </p>
+      <p className="status-title">Loading MedicMedic’s repositories…</p>
       <p className="status-body">Talking to the GitHub API. This usually takes a second.</p>
     </div>
   )
@@ -41,7 +39,7 @@ export function EmptyView({ query }: { query: string }) {
       </p>
       <p className="status-body">
         {query
-          ? 'The search reached GitHub fine — it just didn’t find a match. Try a different term or clear the search to see everything.'
+          ? 'GitHub returned the repository list fine — none of them match your search. Try a different term or clear the search to see everything.'
           : 'Check back later, or open the GitHub profile directly.'}
       </p>
     </div>

@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { getCommitCount, getLanguages } from '../api/github'
 import { useShrinkToFit } from '../hooks/useShrinkToFit'
-import type { RepoWithCommits } from '../types'
+import type { GithubRepo } from '../types'
 import { CloseIcon, ForkIcon, GithubIcon, IssueIcon, StarIcon, WatchIcon } from './Icons'
 
 interface RepoModalProps {
-  repo: RepoWithCommits
+  repo: GithubRepo
   onClose: () => void
 }
 
@@ -30,10 +30,7 @@ function topLanguages(languages: Record<string, number>): [string, number][] {
 const DAY_MS = 24 * 60 * 60 * 1000
 
 export function RepoModal({ repo, onClose }: RepoModalProps) {
-  const [stats, setStats] = useState<Stats>({
-    commitCount: repo.commitCount ?? null,
-    languages: null,
-  })
+  const [stats, setStats] = useState<Stats>({ commitCount: null, languages: null })
   const [loadingStats, setLoadingStats] = useState(true)
   // Captured once at mount rather than read directly in render, which a
   // component body must keep pure (no Date.now() calls during render).
@@ -54,9 +51,7 @@ export function RepoModal({ repo, onClose }: RepoModalProps) {
   useEffect(() => {
     const controller = new AbortController()
     Promise.allSettled([
-      repo.commitCount !== undefined
-        ? Promise.resolve(repo.commitCount)
-        : getCommitCount(repo.full_name, controller.signal),
+      getCommitCount(repo.full_name, controller.signal),
       getLanguages(repo.full_name, controller.signal),
     ]).then(([commitResult, langResult]) => {
       if (controller.signal.aborted) return
@@ -67,7 +62,7 @@ export function RepoModal({ repo, onClose }: RepoModalProps) {
       setLoadingStats(false)
     })
     return () => controller.abort()
-  }, [repo.full_name, repo.commitCount])
+  }, [repo.full_name])
 
   // Escape closes the modal; Tab is trapped so keyboard focus can't leak
   // behind the overlay onto cards the user can no longer see.

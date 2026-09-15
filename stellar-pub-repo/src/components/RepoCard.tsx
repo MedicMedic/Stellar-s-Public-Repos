@@ -1,9 +1,9 @@
-import type { RepoWithCommits } from '../types'
+import type { GithubRepo } from '../types'
 import { ForkIcon, StarIcon } from './Icons'
 
 interface RepoCardProps {
-  repo: RepoWithCommits
-  onOpen: (repo: RepoWithCommits) => void
+  repo: GithubRepo
+  onOpen: (repo: GithubRepo) => void
 }
 
 export function RepoCard({ repo, onOpen }: RepoCardProps) {
@@ -21,7 +21,6 @@ export function RepoCard({ repo, onOpen }: RepoCardProps) {
         <span>
           <ForkIcon /> {repo.forks_count}
         </span>
-        {repo.commitCount !== undefined && <span>{repo.commitCount} commits</span>}
       </div>
     </button>
   )

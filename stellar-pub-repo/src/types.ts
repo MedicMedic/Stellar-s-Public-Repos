@@ -20,11 +20,7 @@ export interface GithubRepo {
   license: { name: string } | null
 }
 
-export interface RepoWithCommits extends GithubRepo {
-  commitCount?: number
-}
-
-export type SortCriterion = 'stars' | 'updated' | 'created' | 'commits'
+export type SortCriterion = 'stars' | 'updated' | 'created' | 'name'
 export type SortDirection = 'desc' | 'asc'
 
 export interface SortCriterionOption {
@@ -36,7 +32,7 @@ export const SORT_CRITERIA: SortCriterionOption[] = [
   { key: 'stars', label: 'Stars' },
   { key: 'updated', label: 'Last commit' },
   { key: 'created', label: 'Created' },
-  { key: 'commits', label: 'Commits' },
+  { key: 'name', label: 'Name' },
 ]
 
 export type ErrorKind = 'rate-limit' | 'not-found' | 'network' | 'demo' | 'unknown'

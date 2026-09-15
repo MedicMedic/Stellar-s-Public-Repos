@@ -1,9 +1,9 @@
-import type { RepoWithCommits } from '../types'
+import type { GithubRepo } from '../types'
 import { RepoCard } from './RepoCard'
 
 interface RepoGridProps {
-  repos: RepoWithCommits[]
-  onOpen: (repo: RepoWithCommits) => void
+  repos: GithubRepo[]
+  onOpen: (repo: GithubRepo) => void
 }
 
 export function RepoGrid({ repos, onOpen }: RepoGridProps) {
