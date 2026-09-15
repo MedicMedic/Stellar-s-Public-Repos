@@ -20,9 +20,16 @@ function App() {
     direction,
   )
 
+  function handleHome() {
+    setQuery('')
+    setCriterion('stars')
+    setDirection('desc')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar onHome={handleHome} />
       <main className="page">
         <Controls
           query={query}

@@ -25,6 +25,12 @@
   color: var(--text-h);
   text-decoration: none;
   letter-spacing: -0.2px;
+  border-radius: 4px;
+}
+
+.navbar-brand:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 4px;
 }
 
 .navbar-links {
@@ -38,15 +44,26 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 15px;
-  padding-bottom: 2px;
+  font-family: inherit;
+  background: transparent;
+  border: none;
   border-bottom: 2px solid transparent;
+  border-radius: 4px;
+  padding: 0 0 2px;
+  cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }
 
-.navbar-link:hover,
+.navbar-link:hover {
+  color: var(--pink);
+  border-bottom-color: var(--pink-soft);
+}
+
 .navbar-link:focus-visible {
   color: var(--pink);
   border-bottom-color: var(--pink-soft);
+  outline: 2px solid var(--pink);
+  outline-offset: 4px;
 }
 
 /* ---------- Page shell ---------- */

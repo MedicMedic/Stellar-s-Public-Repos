@@ -1,6 +1,10 @@
 const STELLAR_SITE_URL = 'https://medicmedic.github.io'
 
-export function Navbar() {
+interface NavbarProps {
+  onHome: () => void
+}
+
+export function Navbar({ onHome }: NavbarProps) {
   return (
     <header className="navbar">
       <div className="navbar-inner">
@@ -8,9 +12,9 @@ export function Navbar() {
           stellar-pub-repo
         </a>
         <nav className="navbar-links">
-          <a className="navbar-link" href="/">
+          <button type="button" className="navbar-link" onClick={onHome}>
             Home
-          </a>
+          </button>
           <a
             className="navbar-link"
             href={STELLAR_SITE_URL}
